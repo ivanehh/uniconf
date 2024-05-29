@@ -21,3 +21,13 @@ vim.keymap.set(NMODE, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower w
 vim.keymap.set(NMODE, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set(INMODE, 'jj', '<Esc>')
+-- Manage buffers
+vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
+vim.keymap.set(NMODE, '<leader>gb', function()
+  local uin = vim.fn.input 'Buffer number:'
+  local buf = tonumber(uin)
+  if buf == 0 then
+    return string.format('<cmd>echo "could not convert %q"', uin)
+  end
+  vim.api.nvim_set_current_buf(buf)
+end)
