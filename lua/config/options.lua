@@ -1,33 +1,35 @@
+local opt = vim.opt
 -- General options are held here
 vim.g.mapleader = ' '
-vim.opt.number = true
-vim.opt.relativenumber = true
+opt.number = true
+opt.relativenumber = true
+vim.cmd 'let g:netrw_liststyle=3'
 --tab width
-vim.opt.tabstop = 4
+opt.tabstop = 4
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.list = true
+opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- when yanking send to clipboard
-vim.opt.clipboard.append(vim.opt.clipboard, 'unnamedplus')
+opt.clipboard.append(vim.opt.clipboard, 'unnamedplus')
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
-vim.opt.title = true
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.ignorecase = true
-vim.opt.breakindent = true
-vim.opt.backspace = { 'indent', 'eol', 'indent' }
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.splitkeep = 'cursor'
-vim.opt.mouse = ''
+opt.scrolloff = 10
+opt.title = true
+opt.autoindent = true
+opt.smartindent = true
+opt.smarttab = true
+opt.ignorecase = true
+opt.breakindent = true
+opt.backspace = { 'indent', 'eol', 'indent' }
+opt.splitbelow = true
+opt.splitright = true
+opt.splitkeep = 'cursor'
+opt.mouse = ''
