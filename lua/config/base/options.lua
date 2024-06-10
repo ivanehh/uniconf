@@ -5,7 +5,7 @@ opt.number = true
 opt.relativenumber = true
 vim.cmd 'let g:netrw_liststyle=3'
 --tab width
-opt.tabstop = 4
+opt.tabstop = 2
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -19,13 +19,18 @@ opt.inccommand = 'split'
 
 -- Show which line your cursor is on
 opt.cursorline = true
+-- Search
+opt.smartcase = true
+opt.ignorecase = true
+
+-- Indentation
+opt.autoindent = true
+opt.smartindent = true
+opt.smarttab = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
 opt.scrolloff = 10
 opt.title = true
-opt.autoindent = true
-opt.smartindent = true
-opt.smarttab = true
 opt.ignorecase = true
 opt.breakindent = true
 opt.backspace = { 'indent', 'eol', 'indent' }
