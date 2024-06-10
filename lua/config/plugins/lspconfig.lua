@@ -158,12 +158,12 @@ return { -- LSP Configuration & Plugins
       -- clangd = {},
       gopls = {},
       powershell_es = {
-        bundle_path = function()
-          if vim.fn.has 'win32' then
-            return '%AppData%/local/nvim/psh'
+        bundle_path = (function()
+          if vim.fn.has 'win32' == 1 then
+            return os.getenv 'LOCALAPPDATA' .. '\\nvim\\psh'
           end
           return '/home/terzivan/Apps/psh'
-        end,
+        end)(),
       },
       -- pyright = {},
       -- rust_analyzer = {},
