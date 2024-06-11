@@ -33,8 +33,8 @@ vim.keymap.set(NMODE, '<leader><tab>nwb', '<cmd>tabnew %<CR>', { desc = 'Make ne
 vim.keymap.set(NMODE, '<leader><tab>c', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
 vim.keymap.set(NMODE, '<leader><tab>0', '<cmd>tabfirst<CR>', { desc = 'Go to the first tab' })
 vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the last tab' })
-vim.keymap.set(NMODE, '<leader><tab>j', '<cmd>tabprevious<CR>', { desc = 'Go to the previous tab according to tab sequence' })
-vim.keymap.set(NMODE, '<leader><tab>k', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
+vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>', { desc = 'Go to the previous tab according to tab sequence' })
+vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
 --
 -- Manage buffers
 vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
