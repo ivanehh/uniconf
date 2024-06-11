@@ -21,6 +21,21 @@ vim.keymap.set(NMODE, '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower w
 vim.keymap.set(NMODE, '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 vim.keymap.set(INMODE, 'jj', '<Esc>')
+-- Manage windows
+vim.keymap.set(NMODE, '<leader>pc', '<cmd>close<CR>', { desc = 'Close current pane' })
+vim.keymap.set(NMODE, '<leader>pv', '<C-w>v', { desc = 'Split pane vertically' })
+vim.keymap.set(NMODE, '<leader>ps', '<C-w>s', { desc = 'Split pane horizontally' })
+vim.keymap.set(NMODE, '<leader>pe', '<C-w>=', { desc = 'Split window evenly between panes' })
+--
+-- Manage tabs
+vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
+vim.keymap.set(NMODE, '<leader><tab>nwb', '<cmd>tabnew %<CR>', { desc = 'Make new tab with the current buffer open' })
+vim.keymap.set(NMODE, '<leader><tab>c', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
+vim.keymap.set(NMODE, '<leader><tab>0', '<cmd>tabfirst<CR>', { desc = 'Go to the first tab' })
+vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the last tab' })
+vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>', { desc = 'Go to the previous tab according to tab sequence' })
+vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
+--
 -- Manage buffers
 vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
 vim.keymap.set(NMODE, '<leader>gb', function()
