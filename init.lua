@@ -2,6 +2,8 @@ INMODE = 'i'
 CMODE = 'c'
 VMODE = 'v'
 NMODE = 'n'
+-- TODO: Add markdown fucntionality
+-- TODO: Add pythong
 -- basic options
 require 'config.base.options'
 require 'config.base.keybindings'
@@ -31,6 +33,10 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- vim.api.nvim_create_autocmd('black_format', {
+--   desc = 'Black formating on save',
+--   group = vim.api.nvim_create_augroup('black', { clear = true }),
+-- })
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -53,10 +59,15 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'neovim-nvim-lspconfig',
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'fatih/vim-go',
   'christoomey/vim-tmux-navigator',
+  'psf/black',
   require 'config.plugins.trouble',
+  require 'config.plugins.todo-comments',
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -94,6 +105,7 @@ require('lazy').setup({
   require 'config.plugins.todo-comments',
   require 'config.plugins.mini',
   require 'config.plugins.treesitter',
+  require 'config.plugins.todo-comments',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
