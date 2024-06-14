@@ -3,7 +3,7 @@ CMODE = 'c'
 VMODE = 'v'
 NMODE = 'n'
 -- TODO: Add markdown fucntionality
--- TODO: Add pythong
+-- TODO: Add proper python support
 -- basic options
 require 'config.base.options'
 require 'config.base.keybindings'
