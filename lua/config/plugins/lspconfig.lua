@@ -15,18 +15,6 @@ return { -- LSP Configuration & Plugins
     { 'folke/neodev.nvim', opts = {} },
   },
   config = function()
-    -- Brief aside: **What is LSP?**
-    --
-    -- LSP is an initialism you've probably heard, but might not understand what it is.
-    --
-    -- LSP stands for Language Server Protocol. It's a protocol that helps editors
-    -- and language tooling communicate in a standardized fashion.
-    --
-    -- In general, you have a "server" which is some tool built to understand a particular
-    -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
-    -- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-    -- processes that communicate with some "client" - in this case, Neovim!
-    --
     -- LSP provides Neovim with features like:
     --  - Go to definition
     --  - Find references
@@ -154,49 +142,53 @@ return { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-    local servers =
-      {
-        -- clangd = {},
-        gopls = {},
-        powershell_es = {
-          bundle_path = (function()
-            if vim.fn.has 'win32' == 1 then
-              return os.getenv 'LOCALAPPDATA' .. '\\nvim\\psh'
-            end
-            return '/home/terzivan/Apps/psh'
-          end)(),
-        },
-        lua_ls = {
-          -- cmd = {...},
-          -- filetypes = { ...},
-          -- capabilities = {},
-          settings = {
-            Lua = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-              -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-              -- diagnostics = { disable = { 'missing-fields' } },
+    local servers = {
+      -- clangd = {},
+      gopls = {},
+      powershell_es = {
+        bundle_path = (function()
+          if vim.fn.has 'win32' == 1 then
+            return os.getenv 'LOCALAPPDATA' .. '\\nvim\\psh'
+          end
+          return '/home/terzivan/Apps/psh'
+        end)(),
+      },
+      lua_ls = {
+        -- cmd = {...},
+        -- filetypes = { ...},
+        -- capabilities = {},
+        settings = {
+          Lua = {
+            completion = {
+              callSnippet = 'Replace',
             },
+            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+            -- diagnostics = { disable = { 'missing-fields' } },
           },
         },
-        pylsp = {
-          capabilities = capabilities,
-          dependencies = {
-            'python-lsp/pylsp-mypy',
-            'python-lsp/python-lsp-black',
-            'python-lsp/python-lsp-ruff',
-          },
-          settings = {},
+      },
+      pylsp = {
+        capabilities = capabilities,
+        dependencies = {
+          'python-lsp/pylsp-mypy',
+          'python-lsp/python-lsp-black',
+          'python-lsp/python-lsp-ruff',
         },
-        -- Ensure the servers and tools above are installed
-        --  To check the current status of installed tools and/or manually install
-        --  other tools, you can run
-        --    :Mason
-        --
-        --  You can press `g?` for help in this menu.
-      }, require('mason').setup()
-
+        settings = {},
+      },
+      yamlls = {
+        hover = true,
+        complation = true,
+        schemaStore = {
+          enable = true,
+        },
+        format = {
+          enable = true,
+        },
+        validate = true,
+      },
+    }
+    require('mason').setup()
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
