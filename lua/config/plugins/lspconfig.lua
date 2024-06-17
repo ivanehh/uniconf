@@ -5,7 +5,7 @@ return { -- LSP Configuration & Plugins
     { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
-
+    'microsoft/python-type-stubs',
     -- Useful status updates for LSP.
     -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
     { 'j-hui/fidget.nvim', opts = {} },
@@ -154,28 +154,59 @@ return { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-    local servers =
-      {
-        -- clangd = {},
-        gopls = {},
-        powershell_es = {
-          bundle_path = (function()
-            if vim.fn.has 'win32' == 1 then
-              return os.getenv 'LOCALAPPDATA' .. '\\nvim\\psh'
-            end
-            return '/home/terzivan/Apps/psh'
-          end)(),
+    local servers = {
+      -- clangd = {},
+      gopls = {},
+      powershell_es = {
+        bundle_path = (function()
+          if vim.fn.has 'win32' == 1 then
+            return os.getenv 'LOCALAPPDATA' .. '\\nvim\\psh'
+          end
+          return '/home/terzivan/Apps/psh'
+        end)(),
+      },
+
+      pyright = {
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              diagnosticMode = 'workspace',
+              useLibraryCodeForTypes = true,
+            },
+          },
         },
-        -- pyright = {},
-        -- rust_analyzer = {},
-        -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-        --
-        -- Some languages (like typescript) have entire language plugins that can be useful:
-        --    https://github.com/pmizio/typescript-tools.nvim
-        --
-        -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-        --
+        before_init = function(_, config)
+          config.settings.python.analysis.stubPath = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy', 'python-type-stubs')
+        end,
+      },
+      -- pylsp = {
+      --
+      --   plugins = {
+      --     -- formatter
+      --     black = { enabled = true },
+      --     autopep8 = { enabled = true },
+      --     yapf = { enabled = true },
+      --     -- linter
+      --     pylint = { enabled = true, executable = 'pylint' },
+      --     -- types
+      --     pylsp_mypy = { enabled = true },
+      --     -- completion
+      --     jedi_completion = { fuzzy = true, enabled = true },
+      --     -- import sorting
+      --     pyls_isort = { enabled = true },
+      --     rope_autoimport = { enabled = true, completions = true, code_actions = true },
+      --   },
+      -- },
+      -- rust_analyzer = {},
+      -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
+      --
+      -- Some languages (like typescript) have entire language plugins that can be useful:
+      --    https://github.com/pmizio/typescript-tools.nvim
+      --
+      -- But for many setups, the LSP (`tsserver`) will work just fine
+      -- tsserver = {},
+      --
 
         lua_ls = {
           -- cmd = {...},
@@ -204,7 +235,8 @@ return { -- LSP Configuration & Plugins
     -- for you, so that they are available from within Neovim.
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
-      'stylua', -- Used to format Lua code
+      'stylua',
+      'black',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
