@@ -178,15 +178,17 @@ return { -- LSP Configuration & Plugins
       },
       yamlls = {
         hover = true,
-        complation = true,
+        completion = true,
         schemaStore = {
           enable = true,
         },
         format = {
           enable = true,
+          bracketSpacing = true,
         },
         validate = true,
       },
+      marksman = {},
     }
     require('mason').setup()
     -- You can add other tools here that you want Mason to install

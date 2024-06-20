@@ -10,7 +10,7 @@ opt.tabstop = 4
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 opt.list = true
-opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+opt.listchars = { tab = '  ', trail = '·', nbsp = '␣' }
 -- when yanking send to clipboard
 opt.clipboard.append(vim.opt.clipboard, 'unnamedplus')
 
