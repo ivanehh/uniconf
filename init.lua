@@ -66,8 +66,8 @@ require('lazy').setup({
   'fatih/vim-go',
   'christoomey/vim-tmux-navigator',
   'psf/black',
+  require 'config.plugins.lualine',
   require 'config.plugins.trouble',
-  require 'config.plugins.todo-comments',
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -102,10 +102,10 @@ require('lazy').setup({
   require 'config.plugins.conform',
   require 'config.plugins.nvim-cmp',
   require 'config.plugins.colorscheme',
-  require 'config.plugins.todo-comments',
   require 'config.plugins.mini',
   require 'config.plugins.treesitter',
   require 'config.plugins.todo-comments',
+  require 'config.plugins.nvim-notify',
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
