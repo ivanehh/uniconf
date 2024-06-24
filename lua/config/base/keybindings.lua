@@ -1,5 +1,6 @@
 -- Write buffers
 vim.keymap.set(NMODE, '<leader>w', '<cmd>w<CR>', { desc = 'Writes the current buffer to its file' })
+vim.keymap.set(NMODE, '<leader>W', '<cmd>wa<CR>', { desc = 'Writes all changed buffers to their files' })
 -- Diagnostic keymaps
 vim.keymap.set(NMODE, '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set(NMODE, ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -39,5 +40,5 @@ vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>', { desc = 'Go to 
 vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
 --
 -- Manage buffers
-vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
-vim.keymap.set(NMODE, '<leader>gb', '<cmd>:ls<CR>:b<Space>', { desc = 'open a list of buffers and await choice' })
+-- vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
+-- vim.keymap.set(NMODE, '<leader>gb', '<cmd>:ls<CR>:b<Space>', { desc = 'open a list of buffers and await choice' })
