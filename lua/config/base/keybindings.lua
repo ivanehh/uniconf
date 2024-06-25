@@ -41,3 +41,17 @@ vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the 
 -- Manage buffers
 vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
 vim.keymap.set(NMODE, '<leader>gb', '<cmd>:ls<CR>:b<Space>', { desc = 'open a list of buffers and await choice' })
+
+-- Golang keymaps
+local function go_keymaps()
+  vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>t', '<cmd>GoTestFunc<CR>', { noremap = true, desc = 'run the function the cursor is in or on' })
+  vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>T', '<cmd>GoTest<CR>', { noremap = true, desc = 'run the function the cursor is in or on' })
+end
+
+local go_group = vim.api.nvim_create_augroup('GoKeymaps', { clear = true })
+
+vim.api.nvim_create_autocmd('FileType', {
+  group = go_group,
+  pattern = 'go',
+  callback = go_keymaps,
+})
