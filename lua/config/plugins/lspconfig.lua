@@ -145,7 +145,13 @@ return { -- LSP Configuration & Plugins
     local servers = {
       -- clangd = {},
       -- TODO: Put any go-related keybindings in the gopls table?
-      gopls = {},
+      gopls = {
+        capabilities = capabilities,
+        opts = function()
+          vim.g.go_test_timeout = '20s'
+          vim.g.go_test_show_name = 0
+        end,
+      },
       powershell_es = {
         bundle_path = (function()
           if vim.fn.has 'win32' == 1 then

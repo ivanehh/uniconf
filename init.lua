@@ -58,9 +58,8 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
+  require 'config.plugins.lspconfig',
   'williamboman/mason.nvim',
-  'williamboman/mason-lspconfig.nvim',
-  'neovim-nvim-lspconfig',
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   'fatih/vim-go',
   'christoomey/vim-tmux-navigator',
@@ -97,7 +96,6 @@ require('lazy').setup({
   },
 
   require 'config.plugins.telescope',
-  require 'config.plugins.lspconfig',
   require 'config.plugins.conform',
   require 'config.plugins.nvim-cmp',
   require 'config.plugins.colorscheme',
