@@ -170,12 +170,19 @@ return { -- LSP Configuration & Plugins
       },
       pylsp = {
         capabilities = capabilities,
-        dependencies = {
-          'python-lsp/pylsp-mypy',
-          'python-lsp/python-lsp-black',
-          'python-lsp/python-lsp-ruff',
+        settings = {
+          dependencies = {
+            'python-lsp/pylsp-mypy',
+            'python-lsp/python-lsp-black',
+            'python-lsp/python-lsp-rsff',
+            'python-rope/pylsp-rope',
+          },
+          plugins = {
+            pyflakes = {
+              enabled = false,
+            },
+          },
         },
-        settings = {},
       },
       yamlls = {
         hover = true,
