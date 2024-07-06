@@ -1,3 +1,8 @@
+vim.g.mapleader=" "
+NMODE = 'n'
+INMODE = 'i'
+TMODE = 't'
+VMODE = 'v'
 -- Write buffers
 vim.keymap.set(NMODE, '<leader>w', '<cmd>w<CR>', { desc = 'Writes the current buffer to its file' })
 vim.keymap.set(NMODE, '<leader>W', '<cmd>wa<CR>', { desc = 'Writes all changed buffers to their files' })

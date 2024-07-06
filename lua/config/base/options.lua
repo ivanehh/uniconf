@@ -1,8 +1,13 @@
+print('loded opts')
 local opt = vim.opt
 -- General options are held here
 vim.g.mapleader = ' '
 opt.number = true
 opt.relativenumber = true
+opt.wrap = false
+opt.hlsearch = false
+opt.incsearch = true
+opt.termguicolors=true
 vim.cmd 'let g:netrw_liststyle=3'
 --tab width
 opt.tabstop = 2
