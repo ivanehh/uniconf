@@ -1,4 +1,3 @@
-print('loded opts')
 local opt = vim.opt
 -- General options are held here
 vim.g.mapleader = ' '

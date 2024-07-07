@@ -1,4 +1,4 @@
-vim.g.mapleader=" "
+vim.g.mapleader = " "
 NMODE = 'n'
 INMODE = 'i'
 TMODE = 't'
@@ -41,22 +41,35 @@ vim.keymap.set(NMODE, '<leader><tab>nwb', '<cmd>tabnew %<CR>', { desc = 'Make ne
 vim.keymap.set(NMODE, '<leader><tab>c', '<cmd>tabclose<CR>', { desc = 'Close current tab' })
 vim.keymap.set(NMODE, '<leader><tab>0', '<cmd>tabfirst<CR>', { desc = 'Go to the first tab' })
 vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the last tab' })
-vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>', { desc = 'Go to the previous tab according to tab sequence' })
+vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>',
+	{ desc = 'Go to the previous tab according to tab sequence' })
 vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
 --
 -- Manage buffers
--- Golang keymaps
-local function go_keymaps()
-  vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>t', '<cmd>GoTestFunc<CR>', { noremap = true, desc = 'run the function the cursor is in or on' })
-  vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>T', '<cmd>GoTest<CR>', { noremap = true, desc = 'run the function the cursor is in or on' })
-end
+-- Autocommands
 
 local go_group = vim.api.nvim_create_augroup('GoKeymaps', { clear = true })
 
+local function go_keymaps()
+	vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>t', '<cmd>GoTestFunc<CR>',
+		{ noremap = true, desc = 'run the function the cursor is in or on' })
+	vim.api.nvim_buf_set_keymap(0, NMODE, '<leader>T', '<cmd>GoTest<CR>',
+		{ noremap = true, desc = 'run the function the cursor is in or on' })
+end
+
 vim.api.nvim_create_autocmd('FileType', {
-  group = go_group,
-  pattern = 'go',
-  callback = go_keymaps,
+	group = go_group,
+	pattern = 'go',
+	callback = go_keymaps,
 })
+
+local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
+
+vim.api.nvim_create_autocmd('BufWrite', {
+	group = on_save,
+	callback = vim.lsp.buf.format
+})
+
+
 -- vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
 -- vim.keymap.set(NMODE, '<leader>gb', '<cmd>:ls<CR>:b<Space>', { desc = 'open a list of buffers and await choice' })
