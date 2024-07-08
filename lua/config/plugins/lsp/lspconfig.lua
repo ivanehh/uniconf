@@ -135,7 +135,16 @@ return {
 			}
 		)
 		-- additional mason tool installs
-		mason_tools.setup({ ensure_installed = { "stylua" } })
+		mason_tools.setup({
+			ensure_installed = {
+				"stylua",
+				"black",
+				"ruff",
+				"isort",
+				-- FIX: Debugging doesn't load up :)
+				"debugpy",
+			}
+		})
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend('force', capabilities, nvim_cmp.default_capabilities())
 		local signs = { Error = "⮾ ", Warn = "⚠ ", Info = "🛈 " }
@@ -159,24 +168,10 @@ return {
 				},
 			}
 		)
+		lspconfig.pyright.setup({
+			capabilities = capabilities,
+			filetypes = { 'python' },
+		})
+		lspconfig.gopls.setup({})
 	end
 }
-
---         Lua = {
---             format = {
---                 enable = false,
---                 defaultConfig = {
---                     indent_style = "space",
---                     indent_size = "2",
---                 }
---             }
---         ,
---             diagnostics = {
---                 globals = {"vim"}
---             },
---         workspace = {
---             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
---             [vim.fn.stdpath("config") .. "/lua"] = true
---         }
---     },
--- }

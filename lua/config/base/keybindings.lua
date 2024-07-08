@@ -44,7 +44,12 @@ vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the 
 vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>',
 	{ desc = 'Go to the previous tab according to tab sequence' })
 vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
---
+-- Debug keybinds
+-- vim.keymap.set(NMODE, '<leader>bb', vim.cmd(require('dap').toogle_breakpoint()), { desc = 'Make new tab' })
+-- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
+-- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
+-- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
+-- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
 -- Manage buffers
 -- Autocommands
 
@@ -65,11 +70,30 @@ vim.api.nvim_create_autocmd('FileType', {
 
 local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
 
-vim.api.nvim_create_autocmd('BufWrite', {
+vim.api.nvim_create_autocmd('BufWritePre', {
 	group = on_save,
-	callback = vim.lsp.buf.format
+	pattern = "/^(*.py)",
+	callback = function()
+		vim.lsp.buf.format()
+	end
 })
 
+vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
+	group = on_save,
+	pattern = "*.py",
+	callback = function()
+		require('lint').try_lint()
+	end
+})
+
+vim.api.nvim_create_autocmd('BufWritePre', {
+	group = on_save,
+	pattern = "*.py",
+	callback = function()
+		vim.cmd('Black')
+		vim.cmd("Isort")
+	end
+})
 
 -- vim.keymap.set(NMODE, '<leader>lb', '<cmd>buffers<CR>')
 -- vim.keymap.set(NMODE, '<leader>gb', '<cmd>:ls<CR>:b<Space>', { desc = 'open a list of buffers and await choice' })
