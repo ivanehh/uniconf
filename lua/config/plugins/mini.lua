@@ -17,6 +17,9 @@ return { -- Collection of various small independent plugins/modules
 		require('mini.surround').setup()
 		-- Easy git commands in Command mode
 		require('mini.git').setup()
+		require('mini.pairs').setup()
+		require('mini.splitjoin').setup()
+		require('mini.indentscope').setup()
 		-- Simple and easy statusline.
 		--  You could remove this setup call if you don't like it,
 		--  and try some other statusline plugin

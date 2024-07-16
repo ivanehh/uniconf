@@ -53,6 +53,14 @@ vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the 
 -- Manage buffers
 -- Autocommands
 
+local on_yank = vim.api.nvim_create_augroup('OnYank', { clear = true })
+vim.api.nvim_create_autocmd('TextYankPost', {
+	group = on_yank,
+	callback = function()
+		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = 200 })
+	end
+})
+
 local go_group = vim.api.nvim_create_augroup('GoKeymaps', { clear = true })
 
 local function go_keymaps()
@@ -72,26 +80,29 @@ local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = on_save,
-	pattern = "/^(*.py)",
 	callback = function()
-		vim.lsp.buf.format()
+		if vim.bo.filetype ~= 'python' then
+			vim.lsp.buf.format()
+		end
 	end
 })
 
 vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
 	group = on_save,
-	pattern = "*.py",
 	callback = function()
-		require('lint').try_lint()
+		if vim.bo.filetype == 'python' then
+			require('lint').try_lint()
+		end
 	end
 })
 
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = on_save,
-	pattern = "*.py",
 	callback = function()
-		vim.cmd('Black')
-		vim.cmd("Isort")
+		if vim.bo.filetype == 'python' then
+			vim.cmd('Black')
+			vim.cmd("Isort")
+		end
 	end
 })
 

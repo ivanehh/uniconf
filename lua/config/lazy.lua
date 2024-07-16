@@ -40,6 +40,7 @@ require("lazy").setup({
 			require('config.plugins.todo-comments'),
 			require('config.plugins.repl'),
 			require('config.plugins.nvim-notify'),
+												require('config.plugins.oil'),
 			require('config.plugins.lsp.py.black'),
 			require('config.plugins.lsp.py.isort'),
 			require('config.plugins.lsp.py.debug-py'),
