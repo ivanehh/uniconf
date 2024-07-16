@@ -1,4 +1,4 @@
-require("config.base.keybindings")
-require("config.base.options")
-require("config.lazy")
+require("base.keybindings")
+require("base.options")
+require("lua.lazy")
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>')
