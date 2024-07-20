@@ -173,5 +173,6 @@ return {
 			filetypes = { 'python' },
 		})
 		lspconfig.gopls.setup({})
-	end
+		lspconfig.hyprls.setup({})
+	end,
 }

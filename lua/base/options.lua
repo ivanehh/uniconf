@@ -6,10 +6,11 @@ opt.relativenumber = true
 opt.wrap = false
 opt.hlsearch = false
 opt.incsearch = true
-opt.termguicolors=true
+opt.termguicolors = true
 vim.cmd 'let g:netrw_liststyle=3'
 --tab width
 opt.tabstop = 2
+opt.shiftwidth = 0
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
@@ -41,4 +42,9 @@ opt.backspace = { 'indent', 'eol', 'indent' }
 opt.splitbelow = true
 opt.splitright = true
 opt.splitkeep = 'cursor'
-opt.mouse = ''
+opt.mouse = 'a'
+
+-- special filetypes
+vim.filetype.add(
+	{ pattern = { [".*/hypr/.*%.conf"] = 'hyprlang' }, }
+)
