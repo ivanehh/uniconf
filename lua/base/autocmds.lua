@@ -28,26 +28,10 @@ vim.api.nvim_create_autocmd('FileType', {
 -- When opening files
 
 local on_open = vim.api.nvim_create_augroup('OnOpen', { clear = true })
-vim.api.nvim_create_autocmd('BufReadPost', {
-	group = on_open,
-	pattern = "*.json",
-	callback = function()
-		vim.cmd('!jq "."')
-	end
-})
 
 -- When saving various files
 local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
 
-local function callJq()
-	local bufnr = vim.api.nvim_get_current_buf()
-	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, vim.api.nvim_buf_line_count(bufnr), true)
-	local text = ''
-	for line in lines do
-		text = text .. line .. '\n'
-	end
-	return text
-end
 
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = on_save,
@@ -85,10 +69,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
 				return
 			else
 				res = vim.api.nvim_exec2(
-					string.format(
-						'!jq "." %q',
-						vim.api.nvim_buf_get_name(cbuf)
-					),
+					'%!jq "." ',
 					{ output = true }
 				)
 				vim.notify('JSON formatted', 'info')
