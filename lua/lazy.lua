@@ -26,6 +26,7 @@ require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{
+			require("plugins.lsp.go.nvim-go"),
 			require("plugins.colorscheme"),
 			require("plugins.mini"),
 			require("plugins.lualine"),
@@ -40,7 +41,7 @@ require("lazy").setup({
 			require('plugins.todo-comments'),
 			require('plugins.repl'),
 			require('plugins.nvim-notify'),
-												require('plugins.oil'),
+			require('plugins.oil'),
 			require('plugins.lsp.py.black'),
 			require('plugins.lsp.py.isort'),
 			require('plugins.lsp.py.debug-py'),
