@@ -32,12 +32,22 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 	group = on_open,
 	pattern = "*.json",
 	callback = function()
-		vim.cmd('%!jq "."')
+		vim.cmd('!jq "."')
 	end
 })
 
 -- When saving various files
 local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
+
+local function callJq()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, vim.api.nvim_buf_line_count(bufnr), true)
+	local text = ''
+	for line in lines do
+		text = text .. line .. '\n'
+	end
+	return text
+end
 
 vim.api.nvim_create_autocmd('BufWritePre', {
 	group = on_save,
@@ -45,14 +55,44 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 		if vim.bo.filetype ~= 'python' then
 			vim.lsp.buf.format()
 		end
-	end
+	end,
 })
 
 vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
 	group = on_save,
 	callback = function()
+		local cbuf = vim.api.nvim_get_current_buf()
+		local s, e = nil, nil
 		if vim.bo.filetype == 'python' then
 			require('lint').try_lint()
+		end
+		--- format json and notify if there are errors
+		if vim.bo.filetype == 'json' or vim.bo.filetype == 'jsonc' then
+			local res = vim.api.nvim_exec2(
+				string.format(
+					'!jq "." %q',
+					vim.api.nvim_buf_get_name(cbuf)
+				),
+				{ output = true }
+			)
+			s, e = string.find(res['output'], 'error')
+			if e then
+				local notify_text = string.sub(res['output'], e + 3,
+					string.len(
+						res['output'])
+				)
+				vim.notify(notify_text, 'warn')
+				return
+			else
+				res = vim.api.nvim_exec2(
+					string.format(
+						'!jq "." %q',
+						vim.api.nvim_buf_get_name(cbuf)
+					),
+					{ output = true }
+				)
+				vim.notify('JSON formatted', 'info')
+			end
 		end
 	end
 })
