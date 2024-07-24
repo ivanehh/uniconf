@@ -174,5 +174,6 @@ return {
 		})
 		lspconfig.gopls.setup({})
 		lspconfig.hyprls.setup({})
+		lspconfig.marksman.setup({})
 	end,
 }
