@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 	end,
 })
 
-vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
+vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 	group = on_save,
 	callback = function()
 		local cbuf = vim.api.nvim_get_current_buf()
@@ -60,7 +60,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
 				{ output = true }
 			)
 			s, e = string.find(res['output'], 'error')
-			if e then
+			if s or e then
 				local notify_text = string.sub(res['output'], e + 3,
 					string.len(
 						res['output'])
