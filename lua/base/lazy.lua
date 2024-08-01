@@ -41,6 +41,8 @@ require("lazy").setup({
 			require('plugins.repl'),
 			require('plugins.nvim-notify'),
 			require('plugins.oil'),
+			require('plugins.gitsigns'),
+			require('plugins.vim-go'),
 			require('plugins.lsp.py.black'),
 			require('plugins.lsp.py.isort'),
 			require('plugins.lsp.py.debug-py'),
