@@ -46,6 +46,7 @@ require("lazy").setup({
 			require('plugins.lsp.py.black'),
 			require('plugins.lsp.py.isort'),
 			require('plugins.lsp.py.debug-py'),
+			require('plugins.dap'),
 			require('plugins.linter.nvim-lint')
 		},
 	},

@@ -3,6 +3,7 @@ require("base.autocmds")
 require("base.options")
 require("base.lazy")
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>')
+
 -- Hyprlang LSP
 vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWinEnter' }, {
 	pattern = { "*.hl", "hypr*.conf" },
