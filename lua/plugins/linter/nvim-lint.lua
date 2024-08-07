@@ -3,7 +3,8 @@ return {
 	event = 'BufWritePost',
 	config = function()
 		require('lint').linters_by_ft = {
-			'ruff'
+			python = { 'ruff' },
+			-- go = { 'golangcilint' },
 		}
 	end
 }

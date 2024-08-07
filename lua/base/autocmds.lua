@@ -47,9 +47,7 @@ vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
 	callback = function()
 		local cbuf = vim.api.nvim_get_current_buf()
 		local s, e = nil, nil
-		if vim.bo.filetype == 'python' then
-			require('lint').try_lint()
-		end
+		require("lint").try_lint()
 		--- format json and notify if there are errors
 		if vim.bo.filetype == 'json' or vim.bo.filetype == 'jsonc' then
 			local res = vim.api.nvim_exec2(

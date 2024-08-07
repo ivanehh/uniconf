@@ -172,7 +172,23 @@ return {
 			capabilities = capabilities,
 			filetypes = { 'python' },
 		})
-		lspconfig.gopls.setup({})
+		lspconfig.gopls.setup({
+			capabilities = capabilities,
+			settings = {
+				gopls = {
+					usePlaceholders = true,
+					experimentalPostfixCompletions = true,
+					completeFunctionCalls = true,
+					analyses = {
+						unusedparams = true,
+						nilness = true,
+						useany = true,
+					},
+					staticcheck = true,
+					gofumpt = true,
+				}
+			}
+		})
 		lspconfig.hyprls.setup({})
 		lspconfig.marksman.setup({})
 	end,
