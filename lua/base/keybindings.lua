@@ -34,7 +34,6 @@ vim.keymap.set(NMODE, '<leader>pc', '<cmd>close<CR>', { desc = 'Close current pa
 vim.keymap.set(NMODE, '<leader>pv', '<C-w>v', { desc = 'Split pane vertically' })
 vim.keymap.set(NMODE, '<leader>ps', '<C-w>s', { desc = 'Split pane horizontally' })
 vim.keymap.set(NMODE, '<leader>pe', '<C-w>=', { desc = 'Split window evenly between panes' })
---
 -- Manage tabs
 vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
 vim.keymap.set(NMODE, '<leader><tab>nwb', '<cmd>tabnew %<CR>', { desc = 'Make new tab with the current buffer open' })
@@ -44,9 +43,7 @@ vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the 
 vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>',
 	{ desc = 'Go to the previous tab according to tab sequence' })
 vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
--- Debug keybinds
--- vim.keymap.set(NMODE, '<leader>bb', vim.cmd(require('dap').toogle_breakpoint()), { desc = 'Make new tab' })
--- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
--- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
--- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
--- vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
+-- Plugin keymaps
+vim.keymap.set(NMODE, '<leader>g', '<cmd>Gitsigns<CR>', { desc = "Launch Gitsigns" })
+vim.keymap.set(NMODE, '<leader>gj', '<cmd>Gitsigns next_hunk<CR>', { desc = "Go to next hunk" })
+vim.keymap.set(NMODE, '<leader>gk', '<cmd>Gitsigns prev_hunk<CR>', { desc = "Go to previous hunk" })
