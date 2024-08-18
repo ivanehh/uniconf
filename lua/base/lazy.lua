@@ -27,6 +27,8 @@ require("lazy").setup({
 		-- import your plugins
 		{
 			require("plugins.colorscheme"),
+			require('plugins.dap'),
+			require('plugins.linter.nvim-lint'),
 			require("plugins.mini"),
 			require("plugins.lualine"),
 			require("plugins.telescope"),
@@ -46,8 +48,6 @@ require("lazy").setup({
 			require('plugins.lsp.py.black'),
 			require('plugins.lsp.py.isort'),
 			require('plugins.lsp.py.debug-py'),
-			require('plugins.dap'),
-			require('plugins.linter.nvim-lint')
 		},
 	},
 	-- Configure any other settings here. See the documentation for more details.

@@ -43,7 +43,24 @@ vim.keymap.set(NMODE, '<leader><tab>$', '<cmd>tablast<CR>', { desc = 'Go to the 
 vim.keymap.set(NMODE, '<leader><tab>h', '<cmd>tabprevious<CR>',
 	{ desc = 'Go to the previous tab according to tab sequence' })
 vim.keymap.set(NMODE, '<leader><tab>l', '<cmd>tabnext<CR>', { desc = 'Go to the next tab accordig to tab sequence' })
--- Plugin keymaps
+-- Plugin Keybinds
 vim.keymap.set(NMODE, '<leader>g', '<cmd>Gitsigns<CR>', { desc = "Launch Gitsigns" })
 vim.keymap.set(NMODE, '<leader>gj', '<cmd>Gitsigns next_hunk<CR>', { desc = "Go to next hunk" })
 vim.keymap.set(NMODE, '<leader>gk', '<cmd>Gitsigns prev_hunk<CR>', { desc = "Go to previous hunk" })
+
+-- DAP Keybinds
+local dap = require('dap')
+local dapui = require('dapui')
+vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
+vim.keymap.set(NMODE, '<leader>db', dap.toggle_breakpoint, { noremap = true, desc = "Toggle the DAP UI" })
+vim.keymap.set(NMODE, '<leader>dc', dap.continue, { noremap = true, desc = "Next breakpoint;Continue debugging" })
+vim.keymap.set(NMODE, '<leader>dt', dap.up, { noremap = true, desc = "Toggle the DAP UI" })
+vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
+
+
+-- Todo Keybinds
+vim.keymap.set(NMODE, '<leader>lc', '<cmd>TodoLocList<CR>', { desc = '[l]ocation [c]omments in project' })
+
+
+-- Oil Keybinds
+vim.keymap.set(NMODE, '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil' })

@@ -2,7 +2,6 @@ return {
 	'stevearc/oil.nvim',
 	config = function()
 		require('oil').setup({
-			vim.keymap.set(NMODE, '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil' }),
 			default_file_explorer = true,
 			columns = {
 				"icon",

@@ -1,7 +1,7 @@
-require("base.keybindings")
+require("base.lazy")
 require("base.autocmds")
 require("base.options")
-require("base.lazy")
+require("base.keybindings")
 vim.keymap.set('n', '<leader>w', '<cmd>w<CR>')
 
 -- Hyprlang LSP
