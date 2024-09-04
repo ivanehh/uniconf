@@ -43,6 +43,8 @@ opt.splitbelow = true
 opt.splitright = true
 opt.splitkeep = 'cursor'
 opt.mouse = 'a'
+vim.cmd.highlight("Visual cterm=bold gui=bold guifg=#dcd7ba guibg=#2d4f67")
+
 
 -- special filetypes
 vim.filetype.add(

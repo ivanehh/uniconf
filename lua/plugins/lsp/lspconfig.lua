@@ -191,5 +191,6 @@ return {
 		})
 		lspconfig.hyprls.setup({})
 		lspconfig.marksman.setup({})
+		lspconfig.bashls.setup {}
 	end,
 }
