@@ -8,9 +8,16 @@ opt.hlsearch = false
 opt.incsearch = true
 opt.termguicolors = true
 vim.cmd 'let g:netrw_liststyle=3'
+
 --tab width
 opt.tabstop = 2
 opt.shiftwidth = 0
+
+--folding
+opt.foldmethod = "expr"
+opt.foldexpr = vim.treesitter.foldexpr()
+vim.opt.foldcolumn = "0"
+
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
