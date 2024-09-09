@@ -41,7 +41,7 @@ require("lazy").setup({
 			require('plugins.trouble'),
 			require('plugins.todo-comments'),
 			require('plugins.repl'),
-			require('plugins.nvim-notify'),
+			-- require('plugins.nvim-notify'),
 			require('plugins.oil'),
 			require('plugins.gitsigns'),
 			require('plugins.vim-go'),
