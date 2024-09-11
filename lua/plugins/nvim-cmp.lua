@@ -84,6 +84,7 @@ return {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "buffer" },
+					{ name = 'conjure' },
 					{ name = "path" }
 				}
 			)

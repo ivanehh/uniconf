@@ -192,5 +192,8 @@ return {
 		lspconfig.hyprls.setup({})
 		lspconfig.marksman.setup({})
 		lspconfig.bashls.setup {}
+		lspconfig.html.setup {
+			capabilities = capabilities
+		}
 	end,
 }

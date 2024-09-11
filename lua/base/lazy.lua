@@ -47,7 +47,7 @@ require("lazy").setup({
 			require('plugins.vim-go'),
 			require('plugins.lsp.py.black'),
 			require('plugins.lsp.py.isort'),
-			require('plugins.lsp.py.debug-py'),
+			-- require('plugins.lsp.py.debug-py'),
 			require 'plugins.yuck',
 			require 'plugins.parinfer',
 		},
