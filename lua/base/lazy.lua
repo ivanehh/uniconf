@@ -28,6 +28,8 @@ require("lazy").setup({
 		-- import your plugins
 		{
 			require('plugins.ui.colorscheme'),
+			require('plugins.ui.notify'),
+			require('plugins.ui.noice'),
 			require('plugins.dap'),
 			require('plugins.linter.nvim-lint'),
 			require("plugins.mini"),
