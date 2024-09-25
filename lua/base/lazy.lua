@@ -21,12 +21,13 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+require("plugins.ui.noice")
 -- Setup lazy.nvim
 require("lazy").setup({
 	spec = {
 		-- import your plugins
 		{
-			require("plugins.colorscheme"),
+			require('plugins.ui.colorscheme'),
 			require('plugins.dap'),
 			require('plugins.linter.nvim-lint'),
 			require("plugins.mini"),
@@ -35,13 +36,12 @@ require("lazy").setup({
 			require("plugins.treesitter"),
 			require('plugins.lsp.mason'),
 			require('plugins.lsp.lspconfig'),
-			require('plugins.dressing'),
+			require("plugins.html-css"),
 			require('plugins.nvim-cmp'),
 			require('plugins.vim-tmux'),
 			require('plugins.trouble'),
 			require('plugins.todo-comments'),
 			require('plugins.repl'),
-			-- require('plugins.nvim-notify'),
 			require('plugins.oil'),
 			require('plugins.gitsigns'),
 			require('plugins.vim-go'),

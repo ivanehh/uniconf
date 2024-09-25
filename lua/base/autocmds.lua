@@ -81,7 +81,7 @@ vim.api.nvim_create_autocmd('BufWritePre', {
 	callback = function()
 		if vim.bo.filetype == 'python' then
 			vim.cmd('Black')
-			vim.cmd("Isort")
+			vim.cmd('Isort')
 		end
 	end
 })

@@ -11,7 +11,9 @@ return {
 		--  nvim-cmp does not ship with all sources by default. They are split
 		--  into multiple repos for maintenance purposes.
 		"hrsh7th/cmp-nvim-lsp",
+		"hrsh7th/cmp-nvim-lua",
 		"rafamadriz/friendly-snippets",
+		"Jezda1337/nvim-html-css",
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer"
 	},
@@ -28,6 +30,7 @@ return {
 					luasnip.lsp_expand(args.body)
 				end
 			},
+			debug = true,
 			completion = { completeopt = "menu,menuone,preview,noinsert" },
 			-- For an understanding of why these mappings were
 			-- chosen, you will need to read `:help ins-completion`
@@ -82,12 +85,28 @@ return {
 			sources = cmp.config.sources(
 				{
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
+					{ name = "html-css", option = {
+						max_count = {}, -- not ready yet
+						enable_on = {
+							"html", "css"
+						},                                             -- set the file types you want the plugin to work on
+						file_extensions = { "css", "sass", "less", "html" }, -- set the local filetypes from which you want to derive classes
+						style_sheets = {
+							-- example of remote styles, only css no js for now
+							"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css",
+							"https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css",
+						}
+					} },
 					{ name = "luasnip" },
-					{ name = "buffer" },
-					{ name = 'conjure' },
+					{ name = "buffer", keyword_length = 5 },
 					{ name = "path" }
 				}
-			)
+			),
+			experimental = {
+				ghost_text = true,
+				native_menu = false
+			}
 		}
 	end
 }
