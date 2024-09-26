@@ -30,6 +30,7 @@ require("lazy").setup({
 			require('plugins.ui.colorscheme'),
 			require('plugins.ui.notify'),
 			require('plugins.ui.noice'),
+			require('plugins.Comment'),
 			require('plugins.dap'),
 			require('plugins.linter.nvim-lint'),
 			require("plugins.mini"),
