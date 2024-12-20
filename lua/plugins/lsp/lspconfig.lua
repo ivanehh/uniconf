@@ -180,6 +180,7 @@ return {
 					experimentalPostfixCompletions = true,
 					completeFunctionCalls = true,
 					analyses = {
+						assign = true,
 						unusedparams = true,
 						nilness = true,
 						useany = true,
@@ -192,7 +193,11 @@ return {
 		lspconfig.hyprls.setup({})
 		lspconfig.marksman.setup({})
 		lspconfig.bashls.setup {}
+		lspconfig.templ.setup {}
 		lspconfig.html.setup {
+			capabilities = capabilities
+		}
+		lspconfig.cssls.setup {
 			capabilities = capabilities
 		}
 	end,

@@ -23,6 +23,7 @@ return {
 					"gopls",
 					'marksman',
 					"html",
+					"templ",
 				},
 				automatic_installation = true
 			}
