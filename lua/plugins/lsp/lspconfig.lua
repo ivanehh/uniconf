@@ -11,7 +11,6 @@ return {
 		-- code
 		local lspconfig = require("lspconfig")
 		local nvim_cmp = require("cmp_nvim_lsp")
-		local mason_tools = require("mason-tool-installer")
 		-- local capabilities = vim.lsp.protocol.make_client_capabilites()
 		-- capabilities = vim.tbl_deep_extend('force', capabilities, nvimcmp.default_capabilities())
 		vim.api.nvim_create_autocmd(
@@ -135,16 +134,6 @@ return {
 			}
 		)
 		-- additional mason tool installs
-		mason_tools.setup({
-			ensure_installed = {
-				"stylua",
-				"black",
-				"ruff",
-				"isort",
-				-- FIX: Debugging doesn't load up :)
-				"debugpy",
-			}
-		})
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend('force', capabilities, nvim_cmp.default_capabilities())
 		local signs = { Error = "⮾ ", Warn = "⚠ ", Info = "🛈 " }
@@ -190,7 +179,6 @@ return {
 				}
 			}
 		})
-		lspconfig.hyprls.setup({})
 		lspconfig.marksman.setup({})
 		lspconfig.bashls.setup {}
 		lspconfig.templ.setup {}

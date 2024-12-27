@@ -1,11 +1,13 @@
 local util = require 'lspconfig.util'
 
+local M = {}
+
 local root_files = {
 	'pyproject.toml',
 	'setup.py',
 	'setup.cfg',
 	'requirements.txt',
-	'Pipfile',
+	'pipfile',
 	'pyrightconfig.json',
 	'.git',
 }
@@ -21,7 +23,7 @@ local function organize_imports()
 		name = 'pyright',
 	}
 	for _, client in ipairs(clients) do
-		client.request('workspace/executeCommand', params, nil, 0)
+		client.request('workspace/executecommand', params, nil, 0)
 	end
 end
 
@@ -33,17 +35,19 @@ local function set_python_path(path)
 	for _, client in ipairs(clients) do
 		if client.settings then
 			client.settings.python = vim.tbl_deep_extend('force', client.settings.python or {},
-				{ pythonPath = path })
+				{ pythonpath = path })
 		else
 			client.config.settings = vim.tbl_deep_extend('force', client.config.settings,
-				{ python = { pythonPath = path } })
+				{ python = { pythonpath = path } })
 		end
-		client.notify('workspace/didChangeConfiguration', { settings = nil })
+		client.notify('workspace/didchangeconfiguration', { settings = nil })
 	end
 end
 
-return {
-	default_config = {
+
+-- todo: this is only done for a compatible standard; i don't think it'll actually work
+M.setup = function()
+	local config = {
 		cmd = { 'pyright-langserver', '--stdio' },
 		filetypes = { 'python' },
 		root_dir = function(fname)
@@ -53,30 +57,33 @@ return {
 		settings = {
 			pyright = {
 				analysis = {
-					autoSearchPaths = true,
-					useLibraryCodeForTypes = true,
-					diagnosticMode = 'openFilesOnly',
+					autosearchpaths = true,
+					uselibrarycodefortypes = true,
+					diagnosticmode = 'openfilesonly',
 				},
 			},
 		},
-	},
-	commands = {
-		PyrightOrganizeImports = {
-			organize_imports,
-			description = 'Organize Imports',
+		commands = {
+			pyrightorganizeimports = {
+				organize_imports,
+				description = 'organize imports',
+			},
+			pyrightsetpythonpath = {
+				set_python_path,
+				description = 'reconfigure pyright with the provided python path',
+				nargs = 1,
+				complete = 'file',
+			},
 		},
-		PyrightSetPythonPath = {
-			set_python_path,
-			description = 'Reconfigure pyright with the provided python path',
-			nargs = 1,
-			complete = 'file',
-		},
-	},
-	docs = {
-		description = [[
+		docs = {
+			description = [[
 https://detachhead.github.io/basedpyright
 
 `basedpyright`, a static type checker and language server for python
 ]],
-	},
-}
+		}
+	}
+	require('lspconfig').pyright.setup(config)
+end
+
+return M
