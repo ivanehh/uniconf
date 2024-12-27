@@ -21,6 +21,9 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+local imports = {
+}
+
 require("plugins.ui.noice")
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -30,25 +33,22 @@ require("lazy").setup({
 			require('plugins.ui.colorscheme'),
 			require('plugins.ui.notify'),
 			require('plugins.ui.noice'),
-			require('plugins.Comment'),
-			require("plugins.ccc"),
-			require('plugins.dap'),
+			require('plugins.nvim-cmp'),
 			require('plugins.linter.nvim-lint'),
+			require("plugins.ccc"),
 			require("plugins.mini"),
+			require('plugins.dap'),
+			require('plugins.lsp'),
+			require('plugins.Comment'),
 			require("plugins.lualine"),
 			require("plugins.telescope"),
 			require("plugins.treesitter"),
-			require('plugins.lsp.mason'),
-			require('plugins.lsp.lspconfig'),
-			require('plugins.nvim-cmp'),
 			require('plugins.vim-tmux'),
 			require('plugins.trouble'),
 			require('plugins.todo-comments'),
 			require('plugins.oil'),
 			require('plugins.gitsigns'),
 			require('plugins.vim-go'),
-			require('plugins.lsp.py.black'),
-			require('plugins.lsp.py.isort'),
 			require 'plugins.yuck',
 			require 'plugins.parinfer',
 		},

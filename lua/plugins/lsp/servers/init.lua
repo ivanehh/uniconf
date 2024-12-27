@@ -24,7 +24,7 @@ M.setup = function()
 	local servers = get_servers()
 
 	for _, server in ipairs(servers) do
-		local ok, err = pcall(server.setup, capabilities)
+		local ok, err = pcall(require("plugins.lsp.servers." .. server).setup, capabilities)
 		if not ok then
 			vim.notify(
 				string.format("LSP setup failed for %s: %s", server, err),
