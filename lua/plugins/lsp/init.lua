@@ -9,7 +9,6 @@ return {
 	},
 	config = function()
 		require("plugins.lsp.handlers").setup()
-		require("plugins.lsp.mason")
 		require("plugins.lsp.servers").setup()
 	end,
 }

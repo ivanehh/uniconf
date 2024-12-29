@@ -33,6 +33,7 @@ require("lazy").setup({
 			require('plugins.ui.colorscheme'),
 			require('plugins.ui.notify'),
 			require('plugins.ui.noice'),
+			require("plugins.utils.mason"),
 			require('plugins.nvim-cmp'),
 			require('plugins.linter.nvim-lint'),
 			require("plugins.ccc"),
