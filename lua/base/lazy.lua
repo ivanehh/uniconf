@@ -40,6 +40,7 @@ require("lazy").setup({
 			require("plugins.mini"),
 			require('plugins.dap'),
 			require('plugins.lsp'),
+			-- require('plugins.utils.tailwind-csscolors'),
 			require('plugins.Comment'),
 			require("plugins.lualine"),
 			require("plugins.telescope"),
