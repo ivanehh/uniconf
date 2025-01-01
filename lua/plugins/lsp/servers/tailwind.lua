@@ -2,7 +2,7 @@ local M = {}
 
 M.setup = function(capabilities)
 	require('lspconfig').tailwindcss.setup({
-		capabilities = capabilities,
+		capabilities = capabilities
 		-- filetypes = {
 		-- 	'html',
 		-- 	'javascript',
