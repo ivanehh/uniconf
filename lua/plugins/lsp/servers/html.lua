@@ -4,14 +4,15 @@ M.setup = function(capabilities)
 	local lspconfig = require("lspconfig")
 	local config = require("lspconfig.configs.html").default_config
 	lspconfig.html.setup({
-		capabilities = (function(capabilities)
-			capabilities.documentFormattingProvider = false
-			capabilities.documentRangeFormattingProvider = false
-			return capabilities
+		capabilities = (function(caps)
+			caps.documentFormattingProvider = true
+			caps.documentRangeFormattingProvider = true
+			caps.textDocument.colorProvider = false
+			return caps
 		end)(capabilities),
 		filetypes = {
 			"html",
-			"templ", -- golang templ files
+			-- "templ", -- golang templ files
 		},
 		init_options = {
 			configurationSection = { "html", "css", "javascript" },

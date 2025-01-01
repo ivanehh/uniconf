@@ -19,6 +19,8 @@ M.setup = function(capabilities)
 			}
 		}
 	})
-	lspconfig.templ.setup({})
+	lspconfig.templ.setup({
+		capabilities = capabilities,
+	})
 end
 return M
