@@ -3,9 +3,14 @@ NMODE = 'n'
 INMODE = 'i'
 TMODE = 't'
 VMODE = 'v'
--- Write buffers
+-- Buffers
+
 vim.keymap.set(NMODE, '<leader>w', '<cmd>w<CR>', { desc = 'Writes the current buffer to its file' })
 vim.keymap.set(NMODE, '<leader>W', '<cmd>wa<CR>', { desc = 'Writes all changed buffers to their files' })
+vim.keymap.set(NMODE, '<M-l>', '<cmd>bnext<CR>', { desc = 'Go to next buffer' })
+vim.keymap.set(NMODE, '<M-h>', '<cmd>bprevious<CR>', { desc = 'Go to previous buffer' })
+vim.keymap.set(NMODE, '<M-d>', '<cmd>bdelete<CR>', { desc = 'Find buffers with Telescope' })
+
 -- Diagnostic keymaps
 vim.keymap.set(NMODE, '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
 vim.keymap.set(NMODE, ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
@@ -30,9 +35,9 @@ vim.keymap.set(NMODE, '<C-k>', '<C-w><C-k>', { noremap = true, desc = 'Move focu
 
 vim.keymap.set(INMODE, 'jj', '<Esc>')
 -- Manage panes
-vim.keymap.set(NMODE, '<leader>pc', '<cmd>close<CR>', { desc = 'Close current pane' })
-vim.keymap.set(NMODE, '<leader>pv', '<C-w>v', { desc = 'Split pane vertically' })
-vim.keymap.set(NMODE, '<leader>ps', '<C-w>s', { desc = 'Split pane horizontally' })
+vim.keymap.set(NMODE, '<leader>pc', '<cmd>bdelete<CR>', { desc = 'Close current pane' })
+vim.keymap.set(NMODE, '<leader>pv', '<cmd>vsplit<CR>', { desc = 'Split pane vertically' })
+vim.keymap.set(NMODE, '<leader>ps', '<cmd>split<CR>', { desc = 'Split pane horizontally' })
 vim.keymap.set(NMODE, '<leader>pe', '<C-w>=', { desc = 'Split window evenly between panes' })
 -- Manage tabs
 vim.keymap.set(NMODE, '<leader><tab>n', '<cmd>tabnew<CR>', { desc = 'Make new tab' })
@@ -49,18 +54,17 @@ vim.keymap.set(NMODE, '<leader>gj', '<cmd>Gitsigns next_hunk<CR>', { desc = "Go 
 vim.keymap.set(NMODE, '<leader>gk', '<cmd>Gitsigns prev_hunk<CR>', { desc = "Go to previous hunk" })
 
 -- DAP Keybinds
-local dap = require('dap')
-local dapui = require('dapui')
-vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
-vim.keymap.set(NMODE, '<leader>db', dap.toggle_breakpoint, { noremap = true, desc = "Toggle the DAP UI" })
-vim.keymap.set(NMODE, '<leader>dc', dap.continue, { noremap = true, desc = "Next breakpoint;Continue debugging" })
-vim.keymap.set(NMODE, '<leader>dt', dap.up, { noremap = true, desc = "Toggle the DAP UI" })
-vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
-
-
--- Todo Keybinds
-vim.keymap.set(NMODE, '<leader>lc', '<cmd>TodoLocList<CR>', { desc = '[l]ocation [c]omments in project' })
-
-
--- Oil Keybinds
-vim.keymap.set(NMODE, '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil' })
+if vim.g.vscode then
+else
+	local dap = require('dap')
+	local dapui = require('dapui')
+	vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
+	vim.keymap.set(NMODE, '<leader>db', dap.toggle_breakpoint, { noremap = true, desc = "Toggle the DAP UI" })
+	vim.keymap.set(NMODE, '<leader>dc', dap.continue, { noremap = true, desc = "Next breakpoint;Continue debugging" })
+	vim.keymap.set(NMODE, '<leader>dt', dap.up, { noremap = true, desc = "Toggle the DAP UI" })
+	vim.keymap.set(NMODE, '<leader>dt', dapui.toggle, { noremap = true, desc = "Toggle the DAP UI" })
+	-- Oil Keybinds
+	vim.keymap.set(NMODE, '<leader>e', '<cmd>Oil<CR>', { desc = 'Open Oil' })
+	-- Todo Keybinds
+	vim.keymap.set(NMODE, '<leader>lc', '<cmd>TodoLocList<CR>', { desc = '[l]ocation [c]omments in project' })
+end

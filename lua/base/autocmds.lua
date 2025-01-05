@@ -1,4 +1,33 @@
 -- Autocommands
+--- helpers
+local function should_close_buffer(bufnr)
+	local deleteErrors = {}
+	if vim.api.nvim_buf_is_valid(bufnr) == false then
+		table.insert(deleteErrors, string.format("buffer %d is not valid", bufnr))
+	elseif #vim.fn.win_findbuf(bufnr) ~= 0 then
+		table.insert(deleteErrors, string.format("buffer %d is active in a window", bufnr))
+	elseif vim.bo[bufnr].modified == true then
+		table.insert(deleteErrors, string.format("buffer %d is modified", bufnr))
+	elseif vim.bo[bufnr].buftype ~= '' then
+		table.insert(deleteErrors, string.format("buffer %d is a special buffer:", bufnr, vim.bo[bufnr].buftype))
+	end
+	return deleteErrors
+end
+
+-- TODO: Get this to work...somehow
+local function close_unmodified_buffer()
+	local deletedBuffers = {}
+	local buffers = vim.api.nvim_list_bufs()
+	for _, bufnr in ipairs(buffers) do
+		local deleteErrors = should_close_buffer(bufnr)
+		if #deleteErrors ~= 0 then
+			for _, err in ipairs(deleteErrors) do
+				print(string.format("buf %d not deleted:%s", bufnr, err))
+			end
+		end
+	end
+	return deletedBuffers
+end
 
 -- On yanking
 local on_yank = vim.api.nvim_create_augroup('OnYank', { clear = true })
@@ -27,10 +56,29 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- When opening files
 
-local on_open = vim.api.nvim_create_augroup('OnOpen', { clear = true })
+-- local on_open = vim.api.nvim_create_augroup('OnOpen', { clear = true })
 
 -- When saving various files
 local on_save = vim.api.nvim_create_augroup('OnSave', { clear = true })
+
+-- local buffer_autoclose = vim.api.nvim_create_augroup('BufCleanUp', { clear = true })
+
+-- vim.api.nvim_create_autocmd('BufLeave',
+-- 	{
+-- 		group = buffer_autoclose,
+-- 		callback = function()
+-- 			vim.defer_fn(function()
+-- 				local deletedBuffers = close_unmodified_buffer()
+-- 				for _, v in ipairs(deletedBuffers) do
+-- 					vim.notify(string.format("deleted buffer: %s", v))
+-- 				end
+-- 				if #deletedBuffers == 0 then
+-- 					vim.notify("did not delete any buffers")
+-- 				end
+-- 			end, 400)
+-- 		end,
+-- 		desc = 'Delete unmodified buffers when exiting them'
+-- 	})
 
 
 vim.api.nvim_create_autocmd('BufWritePre', {

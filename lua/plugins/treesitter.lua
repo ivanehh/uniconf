@@ -3,7 +3,7 @@ return { -- Highlight, edit, and navigate code
 	build = ':TSUpdate',
 	event = { 'BufReadPre', 'BufNewFile' },
 	opts = {
-		ensure_installed = { 'regex', 'bash', 'c', 'go', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'hyprlang' },
+		ensure_installed = { 'regex', 'bash', 'c', 'go', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
 		-- Autoinstall languages that are not installed
 		sync_install = false,
 		auto_install = true,
